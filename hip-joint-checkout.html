@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortePet · Extra Strength Healthy Hip &amp; Joint · Completar pedido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D1B2A; --teal: #1ABEAA; --teal-dark: #13A090;
+    --cream: #F5F2EC; --warm-white: #FDFCFA; --muted: #6B7280;
+    --border: #E5E1D8; --red: #DC2626; --green: #16A34A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--navy); padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: white; letter-spacing: -0.5px; text-decoration: none; }
+  .logo span { color: var(--teal); }
+  .nav-back { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: white; }
+
+  /* LAYOUT */
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; }
+  @media (max-width: 720px) {
+    .page { grid-template-columns: 1fr; }
+    .summary-col { order: -1; position: static; top: auto; }
+  }
+
+  /* PRODUCT SUMMARY */
+  .summary-col { position: sticky; top: 72px; }
+  .summary-card { background: var(--navy); border-radius: 20px; padding: 24px; color: white; }
+  .summary-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+  .summary-product { display: flex; gap: 16px; align-items: center; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; }
+  .summary-img { width: 72px; height: 72px; border-radius: 50%; background: white; border: 2px solid rgba(26,190,170,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .summary-img img { width: 58px; height: 58px; object-fit: contain; }
+  .summary-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; line-height: 1.3; margin-bottom: 4px; }
+  .summary-sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .summary-rows { display: flex; flex-direction: column; gap: 10px; }
+  .summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .summary-row .lbl { color: rgba(255,255,255,0.5); }
+  .summary-row .val { font-weight: 500; }
+  .summary-total { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 4px; }
+  .summary-total .lbl { font-weight: 600; font-size: 14px; }
+  .summary-total .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--teal); }
+  .trust-row { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.45); }
+  .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+  /* FORM */
+  .form-col {}
+  .step-header { margin-bottom: 24px; }
+  .step-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .step-sub { font-size: 13px; color: var(--muted); }
+
+  .card { background: white; border-radius: 16px; border: 1px solid var(--border); padding: 24px; margin-bottom: 16px; }
+  .card-title { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+
+  .fields { display: grid; gap: 14px; }
+  .fields-2 { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 480px) { .fields-2 { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: 0.02em; }
+  .field label .req { color: var(--teal); margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+    border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px;
+    color: var(--navy); background: var(--warm-white);
+    transition: border-color 0.2s, box-shadow 0.2s; outline: none; appearance: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--teal); box-shadow: 0 0 0 3px rgba(26,190,170,0.12);
+  }
+  .field input.error, .field select.error, .field textarea.error {
+    border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+  }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+  .error-msg { font-size: 11px; color: var(--red); margin-top: 3px; display: none; }
+  .error-msg.show { display: block; }
+
+  /* MÉTODO DE PAGO */
+  .pay-options { display: flex; flex-direction: column; gap: 10px; }
+  .pay-option { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .pay-option:hover { border-color: var(--teal); background: rgba(26,190,170,0.03); }
+  .pay-option.selected { border-color: var(--teal); background: rgba(26,190,170,0.06); }
+  .pay-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+  .pay-option.selected .pay-radio { border-color: var(--teal); }
+  .pay-radio-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); display: none; }
+  .pay-option.selected .pay-radio-dot { display: block; }
+  .pay-info { flex: 1; }
+  .pay-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .pay-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .pay-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+  .pay-badge.green { background: #DCFCE7; color: #15803D; }
+  .pay-badge.orange { background: #FEF3C7; color: #92400E; }
+
+  /* AUTORIZACIÓN DE DATOS */
+  .consent { display: flex; align-items: flex-start; gap: 11px; cursor: pointer; }
+  .consent input { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; accent-color: var(--teal); cursor: pointer; }
+  .consent span { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+  .consent a { color: var(--teal-dark); font-weight: 600; }
+
+  /* BOTÓN */
+  .btn-submit { width: 100%; background: var(--teal); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; padding: 16px; border: none; border-radius: 100px; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(26,190,170,0.3); margin-top: 8px; letter-spacing: 0.02em; }
+  .btn-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .submit-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* ESTADO DE ÉXITO */
+  .success-screen { display: none; background: white; border-radius: 20px; border: 1px solid var(--border); padding: 40px 32px; text-align: center; }
+  .success-screen.show { display: block; }
+  .success-icon { width: 64px; height: 64px; border-radius: 50%; background: #DCFCE7; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; }
+  .success-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
+  .success-sub { font-size: 14px; color: var(--muted); max-width: 320px; margin: 0 auto 28px; line-height: 1.7; }
+  .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; font-size: 15px; font-weight: 700; padding: 15px 32px; border-radius: 100px; text-decoration: none; transition: background 0.2s; box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+  .btn-whatsapp:hover { background: #1DB954; }
+  .summary-preview { background: var(--cream); border-radius: 12px; padding: 16px; margin: 20px 0; text-align: left; font-size: 13px; color: var(--navy); line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+  .success-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+  /* PROGRESS */
+  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 28px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 100%; background: var(--teal); border-radius: 2px; transform: scaleX(0); transform-origin: left; animation: fillBar 0.6s ease forwards; }
+  @keyframes fillBar { to { transform: scaleX(1); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="hip-joint.html" class="logo">Forte<span>Pet</span></a>
+  <a href="hip-joint.html" class="nav-back">← Volver al producto</a>
+</nav>
+
+<div class="page">
+
+  <!-- FORMULARIO -->
+  <div class="form-col">
+    <div class="step-header">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="step-title">Completa tu pedido</div>
+      <div class="step-sub">Llena los datos y te contactamos para coordinar el envío</div>
+    </div>
+
+    <div id="formSection">
+
+      <!-- DATOS PERSONALES -->
+      <div class="card">
+        <div class="card-title">Datos personales</div>
+        <div class="fields">
+          <div class="field">
+            <label>Nombre completo <span class="req">*</span></label>
+            <input type="text" id="nombre" placeholder="Ej. María García López" autocomplete="name">
+            <span class="error-msg" id="err-nombre">Por favor ingresa tu nombre completo</span>
+          </div>
+          <div class="fields fields-2">
+            <div class="field">
+              <label>WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="whatsapp" placeholder="3001234567" maxlength="10">
+              <span class="error-msg" id="err-whatsapp">Ingresa un número válido</span>
+            </div>
+            <div class="field">
+              <label>Departamento <span class="req">*</span></label>
+              <select id="departamento">
+                <option value="">Selecciona...</option>
+                <option>Antioquia</option><option>Atlántico</option><option>Bogotá D.C.</option>
+                <option>Bolívar</option><option>Boyacá</option><option>Caldas</option>
+                <option>Caquetá</option><option>Cauca</option><option>Cesar</option>
+                <option>Córdoba</option><option>Cundinamarca</option><option>Chocó</option>
+                <option>Huila</option><option>La Guajira</option><option>Magdalena</option>
+                <option>Meta</option><option>Nariño</option><option>Norte de Santander</option>
+                <option>Quindío</option><option>Risaralda</option><option>Santander</option>
+                <option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option>
+                <option>Otros</option>
+              </select>
+              <span class="error-msg" id="err-departamento">Selecciona un departamento</span>
+            </div>
+          </div>
+          <div class="fields fields-2">
+            <div class="field">
+              <label>Ciudad <span class="req">*</span></label>
+              <input type="text" id="ciudad" placeholder="Ej. Bucaramanga">
+              <span class="error-msg" id="err-ciudad">Ingresa tu ciudad</span>
+            </div>
+            <div class="field">
+              <label>Barrio <span class="req">*</span></label>
+              <input type="text" id="barrio" placeholder="Ej. Cabecera del Llano">
+              <span class="error-msg" id="err-barrio">Ingresa tu barrio</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Dirección completa <span class="req">*</span></label>
+            <input type="text" id="direccion" placeholder="Ej. Cra 35 #48-20, Apto 301">
+            <span class="error-msg" id="err-direccion">Ingresa la dirección de entrega</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATOS DE LA MASCOTA -->
+      <div class="card">
+        <div class="card-title">Datos de tu mascota</div>
+        <div class="fields">
+          <div class="fields fields-2">
+            <div class="field">
+              <label>Raza <span class="req">*</span></label>
+              <input type="text" id="raza" placeholder="Ej. Labrador, Dachshund...">
+              <span class="error-msg" id="err-raza">Ingresa la raza de tu mascota</span>
+            </div>
+            <div class="field">
+              <label>Tamaño <span class="req">*</span></label>
+              <select id="tamano">
+                <option value="">Selecciona...</option>
+                <option value="Hasta 13 kg">Hasta 13 kg (30 lbs)</option>
+                <option value="14 a 27 kg">De 14 a 27 kg (31 a 60 lbs)</option>
+                <option value="28 a 45 kg">De 28 a 45 kg (61 a 100 lbs)</option>
+                <option value="46 kg en adelante">46 kg en adelante (más de 100 lbs)</option>
+              </select>
+              <span class="error-msg" id="err-tamano">Selecciona el tamaño</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Notas adicionales <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+            <textarea id="notas" placeholder="Condición de tu perro, medicamentos que toma, algo que quieras que sepamos..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÉTODO DE PAGO -->
+      <div class="card">
+        <div class="card-title">Método de pago</div>
+        <div class="pay-options">
+          <div class="pay-option selected" onclick="selectPay(this, 'wompi')">
+            <div class="pay-radio"><div class="pay-radio-dot"></div></div>
+            <div class="pay-info">
+              <div class="pay-name">Pago en línea con Wompi</div>
+              <div class="pay-desc">Tarjeta débito/crédito, PSE, Nequi, Daviplata</div>
+            </div>
+            <span class="pay-badge green">Envío gratis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 20px;">
+        <label class="consent">
+          <input type="checkbox" id="habeas">
+          <span>Autorizo a FortePet a tratar mis datos personales con el fin de gestionar y despachar este pedido, conforme a la Ley 1581 de 2012. <a href="politica-datos.html" target="_blank">Ver política de tratamiento de datos</a></span>
+        </label>
+        <span class="error-msg" id="err-habeas" style="margin-top:8px;">Necesitamos tu autorización para procesar el pedido</span>
+      </div>
+
+      <button class="btn-submit" onclick="submitOrder()">
+        Continuar al pago
+      </button>
+      <p class="submit-note">🔒 Pago seguro vía Wompi (Bancolombia) · Tus datos solo se usan para el envío</p>
+
+    </div><!-- /formSection -->
+
+    <!-- PANTALLA DE ÉXITO -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Ya casi</div>
+      <div class="success-sub">Envíanos este mensaje por WhatsApp para que confirmemos tu pago y coordinemos la entrega. Sin este paso no podemos despachar tu pedido.</div>
+      <p id="refLabel" style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;"></p>
+      <div class="summary-preview" id="summaryPreview"></div>
+      <a href="#" class="btn-whatsapp" id="waLink" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar datos por WhatsApp
+      </a>
+      <p class="success-note">El mensaje ya viene listo con todos tus datos. Solo toca "Enviar".</p>
+    </div>
+
+  </div><!-- /form-col -->
+
+  <!-- RESUMEN LATERAL -->
+  <div class="summary-col">
+    <div class="summary-card">
+      <div class="summary-eyebrow">Tu pedido</div>
+      <div class="summary-product">
+        <div class="summary-img">
+          <img src="data:image/jpeg;base64,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" alt="Extra Strength Healthy Hip &amp; Joint"/>
+        </div>
+        <div>
+          <div class="summary-name">Extra Strength Healthy Hip &amp; Joint</div>
+          <div class="summary-sub">120 premios masticables · Sabor a pollo</div>
+        </div>
+      </div>
+      <div class="summary-rows">
+        <div class="summary-row"><span class="lbl">Producto</span><span class="val">$199.900</span></div>
+        <div class="summary-row"><span class="lbl">Envío</span><span class="val" style="color:#16A34A">Gratis</span></div>
+        <div class="summary-row"><span class="lbl">Cantidad</span><span class="val">1 bolsa de 120 premios</span></div>
+      </div>
+      <div class="summary-total">
+        <span class="lbl">Total</span>
+        <span class="val">$199.900</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><div class="trust-dot"></div>Pago 100% seguro vía Wompi</div>
+        <div class="trust-item"><div class="trust-dot"></div>Envío a todo Colombia</div>
+        <div class="trust-item"><div class="trust-dot"></div>Importado directamente de EE.UU.</div>
+        <div class="trust-item"><div class="trust-dot"></div>Soporte por WhatsApp</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  // ================== CONFIGURAR ANTES DE PUBLICAR ==================
+  // WOMPI_LINK: link de pago de Wompi por $199.900. En Wompi configura la URL
+  //             de redireccion hacia:  .../hip-joint-checkout.html?pago=ok
+  // WA_NUMBER:  tu numero con indicativo, sin signos. Ej: 573001234567
+  const WOMPI_LINK = 'TU_LINK_DE_WOMPI_AQUI';
+  const WA_NUMBER  = '57TUNUMERODECELULAR';
+
+  // SHEET_URL:   URL de tu aplicacion web de Google Apps Script.
+  //              Termina en /exec. Ver INSTRUCCIONES-pedidos.md
+  // SHEET_TOKEN: debe ser IDENTICO al TOKEN del Apps Script.
+  const SHEET_URL   = 'https://script.google.com/macros/s/AKfycbyKXsz4h6IftvN2bQrapE0yAPXFfCbP6NuXAyEbrL-BUS6au6heZAkzTlzIoAd1G7yF/exec';
+  const SHEET_TOKEN = 'fortepet-2026-x9k2m4';
+
+  const PRODUCTO = 'Extra Strength Healthy Hip & Joint (120 premios)';
+  const TOTAL    = '$199.900 COP';
+  const PREFIJO  = 'HJ';
+  // =================================================================
+
+  let payMethod = 'wompi';
+
+  function selectPay(el, method) {
+    document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    payMethod = method;
+  }
+
+  function val(id) {
+    return document.getElementById(id).value.trim();
+  }
+
+  function setError(id, show) {
+    const input = document.getElementById(id);
+    const msg   = document.getElementById('err-' + id);
+    if (show) {
+      input.classList.add('error');
+      if (msg) msg.classList.add('show');
+    } else {
+      input.classList.remove('error');
+      if (msg) msg.classList.remove('show');
+    }
+    return show;
+  }
+
+  function validate() {
+    let ok = true;
+    const required = ['nombre','whatsapp','departamento','ciudad','barrio','direccion','raza','tamano'];
+    required.forEach(id => {
+      if (!val(id)) { setError(id, true); ok = false; }
+      else setError(id, false);
+    });
+
+    // Validar WhatsApp solo números, 10 dígitos
+    const wa = val('whatsapp');
+    if (wa && (!/^\d{10}$/.test(wa))) {
+      setError('whatsapp', true);
+      ok = false;
+    }
+
+    // Autorización de tratamiento de datos (Ley 1581 de 2012)
+    const hab = document.getElementById('habeas');
+    const habMsg = document.getElementById('err-habeas');
+    if (!hab.checked) {
+      habMsg.classList.add('show');
+      ok = false;
+    } else {
+      habMsg.classList.remove('show');
+    }
+
+    return ok;
+  }
+
+  // Referencia unica del pedido. Sirve para cruzar la hoja con el pago de Wompi.
+  function makeRef() {
+    const d = new Date();
+    const p = n => (n < 10 ? '0' : '') + n;
+    const stamp = String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate());
+    return 'FP-' + PREFIJO + '-' + stamp + '-' + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  // Envia el pedido a la hoja de calculo ANTES de salir hacia Wompi.
+  // sendBeacon sobrevive a la navegacion; si no existe, usamos fetch con keepalive.
+  function sendOrder(data) {
+    if (SHEET_URL.indexOf('http') !== 0) {
+      console.warn('SHEET_URL sin configurar: el pedido no se guardo en la hoja.');
+      return Promise.resolve();
+    }
+
+    const json = JSON.stringify(data);
+
+    if (navigator.sendBeacon) {
+      const blob = new Blob([json], { type: 'text/plain;charset=UTF-8' });
+      if (navigator.sendBeacon(SHEET_URL, blob)) return Promise.resolve();
+    }
+
+    return fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: json
+    }).catch(() => {});
+  }
+
+  function buildMessage() {
+    const lines = [
+      '🐾 *NUEVO PEDIDO · FortePet*',
+      `Referencia: ${sessionStorage.getItem('fortepet_ref') || ''}`,
+      '',
+      '📦 *Producto:* Extra Strength Healthy Hip & Joint (120 premios)',
+      '💰 *Total:* $199.900 COP',
+      '',
+      '👤 *DATOS PERSONALES*',
+      `Nombre: ${val('nombre')}`,
+      `WhatsApp: ${val('whatsapp')}`,
+      `Departamento: ${val('departamento')}`,
+      `Ciudad: ${val('ciudad')}`,
+      `Barrio: ${val('barrio')}`,
+      `Dirección: ${val('direccion')}`,
+      '',
+      '🐕 *DATOS DE LA MASCOTA*',
+      `Raza: ${val('raza')}`,
+      `Tamaño: ${val('tamano')}`,
+    ];
+    const notas = val('notas');
+    if (notas) lines.push(`Notas: ${notas}`);
+    lines.push('', '💳 *Método de pago:* Wompi');
+    return lines.join('\n');
+  }
+
+  function submitOrder() {
+    // Limpiar errores previos
+    ['nombre','whatsapp','departamento','ciudad','barrio','direccion','raza','tamano'].forEach(id => setError(id, false));
+
+    if (!validate()) {
+      // Scroll al primer error
+      const firstError = document.querySelector('.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const referencia = makeRef();
+
+    const orderData = {
+      nombre: val('nombre'), whatsapp: val('whatsapp'),
+      departamento: val('departamento'), ciudad: val('ciudad'),
+      barrio: val('barrio'), direccion: val('direccion'),
+      raza: val('raza'), tamano: val('tamano'), notas: val('notas')
+    };
+    sessionStorage.setItem('fortepet_order', JSON.stringify(orderData));
+    sessionStorage.setItem('fortepet_ref', referencia);
+
+    // Envío automático a la hoja de cálculo. Ocurre ANTES del pago,
+    // así el pedido queda registrado aunque el cliente abandone.
+    const payload = Object.assign({}, orderData, {
+      token: SHEET_TOKEN,
+      referencia: referencia,
+      producto: PRODUCTO,
+      total: TOTAL,
+      habeas: document.getElementById('habeas').checked,
+      origen: location.href
+    });
+
+    const btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Registrando tu pedido...';
+
+    sendOrder(payload).then(function () {
+      if (WOMPI_LINK.indexOf('http') !== 0) {
+        alert('AVISO PARA EL ADMINISTRADOR\n\nFalta configurar WOMPI_LINK en el codigo de esta pagina.\nEl pedido ya quedo guardado en la hoja de calculo.');
+        btn.disabled = false;
+        btn.textContent = 'Continuar al pago';
+        showSuccess();
+        return;
+      }
+      window.location.href = WOMPI_LINK;
+    });
+  }
+
+  // Si vuelve de Wompi con ?pago=ok (configurable en la redirect URL de Wompi)
+  function checkReturn() {
+    const params = new URLSearchParams(window.location.search);
+    const stored = sessionStorage.getItem('fortepet_order');
+
+    if ((params.get('pago') === 'ok' || params.get('id')) && stored) {
+      const d = JSON.parse(stored);
+
+      // Restaurar valores en el form para mostrar resumen
+      Object.keys(d).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.value = d[k];
+      });
+
+      showSuccess();
+    }
+  }
+
+  function showSuccess() {
+    document.getElementById('formSection').style.display = 'none';
+    const screen = document.getElementById('successScreen');
+    screen.classList.add('show');
+
+    const ref = sessionStorage.getItem('fortepet_ref');
+    if (ref) {
+      const t = document.getElementById('refLabel');
+      if (t) t.textContent = 'Referencia de tu pedido: ' + ref;
+    }
+
+    const msg = buildMessage();
+    document.getElementById('summaryPreview').textContent = msg;
+
+    const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    document.getElementById('waLink').href = waUrl;
+
+    sessionStorage.removeItem('fortepet_order');
+    sessionStorage.removeItem('fortepet_ref');
+    screen.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Inicializar
+  document.addEventListener('DOMContentLoaded', function() {
+    checkReturn();
+
+    // Limpiar error al escribir
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => setError(el.id, false));
+      el.addEventListener('change', () => setError(el.id, false));
+    });
+  });
+</script>
+
+</body>
+</html>
