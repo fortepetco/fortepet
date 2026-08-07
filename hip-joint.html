@@ -47,7 +47,7 @@
       <p class="hero-nota">Envío incluido · Pago con PSE, Nequi y tarjetas</p>
     </div>
     <div class="hero-img">
-      <img src="img/glycoflex-pack.webp" alt="Empaque de GlycoFlex 3, 120 premios masticables sabor a pollo" width="400" height="609" fetchpriority="high" style="max-width:400px">
+      <img src="img/glycoflex-pack.webp" alt="Empaque de GlycoFlex 3, 120 premios masticables sabor a pollo" width="400" height="609" fetchpriority="high" style="max-width:min(100%,400px)">
     </div>
   </div>
 </section>
@@ -106,7 +106,7 @@
 
       <div class="compra-galeria">
         <div class="marco">
-          <img id="imgPrincipal" src="img/glycoflex-pack.webp" alt="Empaque de GlycoFlex 3" width="400" height="609" loading="lazy" style="max-width:400px">
+          <img id="imgPrincipal" src="img/glycoflex-pack.webp" alt="Empaque de GlycoFlex 3" width="400" height="609" loading="lazy" style="max-width:min(100%,400px)">
         </div>
         <div class="thumbs" role="group" aria-label="Imágenes del producto">
           <button type="button" class="thumb" aria-current="true" data-full="img/glycoflex-pack.webp" data-alt="Empaque de GlycoFlex 3" data-max="400">
@@ -415,7 +415,7 @@ document.querySelectorAll('.thumb').forEach(function(b){
     var main = document.getElementById('imgPrincipal');
     main.src = b.dataset.full;
     main.alt = b.dataset.alt;
-    main.style.maxWidth = b.dataset.max + 'px';
+    main.style.maxWidth = 'min(100%,' + b.dataset.max + 'px)';
   });
 });
 

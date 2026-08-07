@@ -48,6 +48,10 @@ body{
   font-size:17px;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
+  /* red de seguridad contra desbordamiento horizontal en móvil.
+     clip (no hidden) para no romper position:sticky de la barra superior */
+  overflow-x:clip;
+  overflow-wrap:break-word;
 }
 @media(min-width:900px){ body{ font-size:18px } }
 
@@ -504,4 +508,3 @@ strong{ font-weight:650 }
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; scroll-behavior:auto !important }
 }
-
