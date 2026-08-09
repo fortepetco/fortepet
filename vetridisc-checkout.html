@@ -161,7 +161,7 @@ src="https://www.facebook.com/tr?id=1056763293376956&ev=PageView&noscript=1"
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
       </div>
       <h1>Ya casi</h1>
-      <p style="max-width:56ch;color:var(--marron)">Envíanos este mensaje por WhatsApp para que confirmemos tu pago y coordinemos la entrega. Sin este paso no podemos despachar tu pedido.</p>
+      <p style="max-width:56ch;color:var(--marron)">Envíanos este mensaje por WhatsApp para que confirmemos tu pago y coordinemos la entrega. Con él nos ayudas a garantizar una excelente logística de tu pedido.</p>
       <p class="co-ref" id="refLabel"></p>
       <pre class="co-preview" id="summaryPreview"></pre>
       <a href="#" class="btn btn-wa btn-lg" id="waLink" target="_blank" rel="noopener">
@@ -169,6 +169,9 @@ src="https://www.facebook.com/tr?id=1056763293376956&ev=PageView&noscript=1"
         Enviar datos por WhatsApp
       </a>
       <p class="co-nota">El mensaje ya viene listo con todos tus datos. Solo toca "Enviar".</p>
+      <p class="co-nota" style="justify-content:center;margin-top:18px">
+        <a href="pedido-listo.html" style="color:var(--terra-osc);font-weight:600">Continuar</a>
+      </p>
     </div>
 
   </div>
@@ -387,9 +390,21 @@ src="https://www.facebook.com/tr?id=1056763293376956&ev=PageView&noscript=1"
     const msg = buildMessage();
     document.getElementById('summaryPreview').textContent = msg;
     document.getElementById('waLink').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    // guardamos la referencia para la pagina de confirmacion
+    if (ref) sessionStorage.setItem('fortepet_ref_final', ref);
     sessionStorage.removeItem('fortepet_order');
     sessionStorage.removeItem('fortepet_ref');
     screen.scrollIntoView({ behavior: 'smooth' });
+
+    // al tocar WhatsApp, esta pestana pasa a la pagina de pedido confirmado
+    var wa = document.getElementById('waLink');
+    if (wa && !wa.dataset.listo) {
+      wa.dataset.listo = '1';
+      wa.addEventListener('click', function () {
+        if (typeof fbq === 'function') fbq('trackCustom', 'ClicWhatsAppPedido');
+        setTimeout(function () { location.replace('pedido-listo.html'); }, 1500);
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
