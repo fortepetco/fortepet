@@ -509,10 +509,17 @@ strong{ font-weight:650 }
   *{ animation:none !important; transition:none !important; scroll-behavior:auto !important }
 }
 
-/* ---------- ficha técnica del fabricante ---------- */
-.ficha{ margin-top:44px; padding-top:34px; border-top:2px solid var(--verde) }
-.ficha-tit{ font-family:var(--titulo); font-weight:700; font-size:1.18rem; letter-spacing:-0.01em; color:var(--verde); margin:0 0 6px }
-.ficha-sub{ font-size:.95rem; color:var(--marron); margin:0 0 20px; max-width:62ch }
-.ficha-fig{ margin:0 }
-.ficha-fig img{ width:100%; border-radius:var(--r); border:1px solid rgba(92,58,40,.16); box-shadow:var(--sombra) }
-.ficha-pie{ font-size:13px; color:var(--marron); margin:12px 0 0; max-width:62ch }
+/* ---------- enlace a la ficha técnica ---------- */
+.ficha-link{ margin:30px 0 0 }
+.ficha-link a{
+  display:inline-flex; align-items:center; gap:11px;
+  font-family:var(--titulo); font-weight:650; font-size:15.5px; line-height:1.2;
+  color:var(--verde); text-decoration:none;
+  background:var(--crema-osc); border:1px solid rgba(92,58,40,.18);
+  border-radius:var(--pill); padding:12px 20px;
+  transition:border-color .16s, background .16s;
+}
+.ficha-link a:hover{ border-color:var(--terra); background:var(--terra-suave) }
+.ficha-link a:focus-visible{ outline:3px solid var(--terra); outline-offset:3px }
+.ficha-link svg{ flex:0 0 auto; width:17px; height:17px }
+.ficha-link .flecha{ width:14px; height:14px }
