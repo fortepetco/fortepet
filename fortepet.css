@@ -254,7 +254,7 @@ strong{ font-weight:650 }
 .nutri{ margin-top:30px; border-top:2px solid var(--verde) }
 .nutri-row{ display:grid; gap:4px 24px; padding:20px 0; border-bottom:1px solid rgba(92,58,40,.16) }
 @media(min-width:720px){ .nutri-row{ grid-template-columns:170px 1fr; align-items:baseline } }
-.nutri-qty{ font-variant-numeric:tabular-nums; font-family:var(--titulo); font-weight:800; font-size:clamp(1.5rem,3vw,1.95rem); letter-spacing:-0.03em; color:var(--oro-osc); line-height:1 }
+.nutri-qty{ font-variant-numeric:tabular-nums; font-family:var(--titulo); font-weight:800; font-size:clamp(1.5rem,3vw,1.95rem); letter-spacing:-0.03em; color:var(--terra-osc); line-height:1 }
 .nutri-qty small{ font-size:.5em; font-weight:650; margin-left:3px }
 .nutri-name{ font-family:var(--titulo); font-weight:650; font-size:1.05rem; margin:0 0 4px }
 .nutri-desc{ margin:0; color:var(--marron); font-size:.96rem; max-width:58ch }
