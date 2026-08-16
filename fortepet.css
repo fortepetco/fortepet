@@ -286,7 +286,7 @@ strong{ font-weight:650 }
 .tabla{ width:100%; border-collapse:collapse; margin-top:24px; font-size:.96rem }
 .tabla caption{ text-align:left; color:var(--marron); font-size:.9rem; padding-bottom:12px }
 .tabla th,.tabla td{ text-align:left; padding:14px 14px; border:0 }
-.tabla thead th{ font-size:12.5px; font-weight:650; letter-spacing:.09em; text-transform:uppercase; color:var(--verde); border-bottom:2px solid var(--verde) }
+.tabla thead th{ font-size:12.5px; font-weight:650; letter-spacing:.09em; text-transform:uppercase; color:var(--terra-osc); border-bottom:2px solid var(--verde) }
 .tabla tbody tr{ border-bottom:1px solid rgba(92,58,40,.14) }
 .tabla tbody tr:nth-child(even){ background:var(--crema) }
 .tabla td:first-child{ font-weight:600 }
